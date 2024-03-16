@@ -42,12 +42,12 @@ export default function CreatePool() {
 
   async function onSubmit(values) {
     setFormData(() => ({
-      rewardRate: values.reward,
+      rewardRate: parseInt(values.reward),
       isLoading: true,
     }));
 
     try {
-      await result();
+      result();
     } catch (error) {
       toast("Failed transaction");
       console.log(error);

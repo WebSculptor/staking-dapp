@@ -1,12 +1,32 @@
 import { ethers } from "ethers";
 import CONTRACT_ABI from "../json/stakingPool.json";
+import ERC20_CONTRACT_ABI from "../json/erc20.json";
 
-const { VITE_BALLOT_CONTRACT_ADDRESS, VITE_RPC_URL } = import.meta.env;
+const {
+  VITE_STAKE_POOL_CONTRACT_ADDRESS,
+  VITE_RPC_URL,
+  VITE_REWARD_TOKEN_CONTRACT_ADDRESS,
+  VITE_STAKE_TOKEN_CONTRACT_ADDRESS,
+} = import.meta.env;
 
 export const getStakingPoolContract = (providerOrSigner) =>
   new ethers.Contract(
-    VITE_BALLOT_CONTRACT_ADDRESS,
+    VITE_STAKE_POOL_CONTRACT_ADDRESS,
     CONTRACT_ABI,
+    providerOrSigner
+  );
+
+export const getRewardContract = (providerOrSigner) =>
+  new ethers.Contract(
+    VITE_REWARD_TOKEN_CONTRACT_ADDRESS,
+    ERC20_CONTRACT_ABI,
+    providerOrSigner
+  );
+
+export const getStakeContract = (providerOrSigner) =>
+  new ethers.Contract(
+    VITE_STAKE_TOKEN_CONTRACT_ADDRESS,
+    ERC20_CONTRACT_ABI,
     providerOrSigner
   );
 
